@@ -1,0 +1,90 @@
+{
+  "compilerOptions": {
+    // 设置 TypeScript 的编译目标为 ESNext
+    "target": "esnext",
+    // 使用 class fields 的定义方式
+    "useDefineForClassFields": true,
+    // 设置模块系统为 ESNext
+    "module": "esnext",
+    // 模块解析策略为 Node.js
+    "moduleResolution": "node",
+    // 启用所有严格类型检查选项
+    "strict": true,
+    // 保留 JSX 语法（适用于 Vue3 和 React 项目）
+    "jsx": "preserve",
+    // 生成对应的 source map 文件
+    "sourceMap": true,
+    // 允许导入 JSON 模块
+    "resolveJsonModule": true,
+    // 启用 ES 模块互操作性
+    "esModuleInterop": true,
+    // 包含的库文件为 ESNext 和 DOM
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    // 设置基础路径
+    "baseUrl": "./",
+    // 允许编译 JavaScript 文件
+    "allowJs": true,
+    // 强制文件名一致的大小写
+    "forceConsistentCasingInFileNames": true,
+    // 允许合成默认导入
+    "allowSyntheticDefaultImports": true,
+    // 关闭严格的函数类型检查
+    "strictFunctionTypes": false,
+    // 禁止未使用的局部变量
+    "noUnusedLocals": true,
+    // 禁止未使用的参数
+    "noUnusedParameters": true,
+    // 启用实验性的装饰器
+    "experimentalDecorators": true,
+    // 允许隐式的 any 类型
+    "noImplicitAny": false,
+    // 跳过库文件的类型检查
+    "skipLibCheck": true,
+    // 路径映射，用于简化模块导入
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    // 包含的类型定义文件
+    "types": [
+//      "@intlify/unplugin-vue-i18n/types",
+      "vite/client",
+//      "element-plus/global",
+//      "@types/qrcode",
+//      "vite-plugin-svg-icons/client"
+    ],
+    // 输出目录（请保留这个属性，防止 tsconfig.json 文件报错）
+    "outDir": "target",
+    // 包含的类型定义文件根目录
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types"
+    ]
+  },
+  "include": [
+    // 包含的文件和目录
+    "src",
+    "types/**/*.d.ts",
+//    "src/types/auto-imports.d.ts",
+//    "src/types/auto-components.d.ts"
+  ],
+  "exclude": [
+    // 排除的文件和目录
+    "dist",
+    "target",
+    "node_modules"
+  ],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
