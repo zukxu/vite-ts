@@ -51,11 +51,7 @@
     },
     // 包含的类型定义文件
     "types": [
-//      "@intlify/unplugin-vue-i18n/types",
-      "vite/client",
-//      "element-plus/global",
-//      "@types/qrcode",
-//      "vite-plugin-svg-icons/client"
+      "vite/client"
     ],
     // 输出目录（请保留这个属性，防止 tsconfig.json 文件报错）
     "outDir": "target",
@@ -65,26 +61,17 @@
       "./types"
     ]
   },
+  // 包含的文件和目录
   "include": [
-    // 包含的文件和目录
     "src",
-    "types/**/*.d.ts",
-//    "src/types/auto-imports.d.ts",
-//    "src/types/auto-components.d.ts"
+    "types/**/*.d.ts"
+    //    "src/types/auto-imports.d.ts",
+    //    "src/types/auto-components.d.ts"
   ],
   "exclude": [
     // 排除的文件和目录
     "dist",
     "target",
     "node_modules"
-  ],
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
   ]
 }
