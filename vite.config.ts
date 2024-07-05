@@ -1,28 +1,31 @@
-import {defineConfig, loadEnv, UserConfigFnObject} from 'vite';
-import {createVitePlugins} from "./vite/plugins";
-import {resolve} from 'path';
+import { resolve } from 'node:path'
+import * as process from 'node:process'
+import type { UserConfigFnObject } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
+import { createVitePlugins } from './vite/plugins'
 
 const root = process.cwd()
 // https://vitejs.dev/config/
-const config: UserConfigFnObject = ({mode, command}) => {
+const config: UserConfigFnObject = ({ mode, command }) => {
   let env: any
   const isBuild = command === 'build'
   if (!isBuild) {
     env = loadEnv((process.argv[3] === '--mode' ? process.argv[4] : process.argv[3]), root)
-  } else {
+  }
+  else {
     env = loadEnv(mode, root)
   }
   return defineConfig({
     base: env.VITE_BASE_PATH,
-    plugins: createVitePlugins(env, isBuild),//将需要使用的插件引入并配置
+    plugins: createVitePlugins(env, isBuild), // 将需要使用的插件引入并配置
     resolve: {
       alias: {
         // 设置路径
         '~': resolve(__dirname, './'),
         // 设置别名
-        '@': resolve(__dirname, './src')
+        '@': resolve(__dirname, './src'),
       },
-      extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.scss', '.css']
+      extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.scss', '.css'],
     },
     server: {
       host: '0.0.0.0',
@@ -33,13 +36,13 @@ const config: UserConfigFnObject = ({mode, command}) => {
           {
             target: 'http://localhost:18081',
             changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, '')
-          }
+            rewrite: path => path.replace(/^\/api/, ''),
+          },
       },
       // 预加载常用文件
       warmup: {
-        clientFiles: ['@/layouts/**/*.vue']
-      }
+        clientFiles: ['@/layouts/**/*.vue'],
+      },
     },
     build: {
       minify: 'terser',
@@ -48,8 +51,8 @@ const config: UserConfigFnObject = ({mode, command}) => {
       terserOptions: {
         compress: {
           drop_console: true,
-          drop_debugger: true
-        }
+          drop_debugger: true,
+        },
       },
       rollupOptions: {
         output: {
@@ -59,11 +62,11 @@ const config: UserConfigFnObject = ({mode, command}) => {
              */
             vue: ['vue', 'vue-router', 'pinia'],
             primevue:
-              ['primevue', 'primeicons', '@primevue']
-          }
-        }
-      }
-    }
+              ['primevue', 'primeicons', '@primevue'],
+          },
+        },
+      },
+    },
   })
 }
-export default defineConfig(config);
+export default defineConfig(config)
