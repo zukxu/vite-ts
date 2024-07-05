@@ -64,7 +64,8 @@
   // 包含的文件和目录
   "include": [
     "src",
-    "types/**/*.d.ts"
+    "types/**/*.d.ts",
+    "auto-imports.d.ts"
     //    "src/types/auto-imports.d.ts",
     //    "src/types/auto-components.d.ts"
   ],
