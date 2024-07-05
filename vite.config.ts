@@ -1,10 +1,10 @@
-import {ConfigEnv, defineConfig, loadEnv, UserConfig, UserConfigFnObject} from 'vite';
+import {defineConfig, loadEnv, UserConfigFnObject} from 'vite';
 import {createVitePlugins} from "./vite/plugins";
 import {resolve} from 'path';
 
 const root = process.cwd()
 // https://vitejs.dev/config/
-const config: UserConfigFnObject = ({mode, command}: ConfigEnv): UserConfig => {
+const config: UserConfigFnObject = ({mode, command}) => {
   let env: any
   const isBuild = command === 'build'
   if (!isBuild) {
@@ -12,7 +12,7 @@ const config: UserConfigFnObject = ({mode, command}: ConfigEnv): UserConfig => {
   } else {
     env = loadEnv(mode, root)
   }
-  return {
+  return defineConfig({
     base: env.VITE_BASE_PATH,
     plugins: createVitePlugins(env, isBuild),//将需要使用的插件引入并配置
     resolve: {
@@ -27,7 +27,6 @@ const config: UserConfigFnObject = ({mode, command}: ConfigEnv): UserConfig => {
     server: {
       host: '0.0.0.0',
       port: 18080,
-      open: true,
       cors: true,
       proxy: {
         '/api':
@@ -65,6 +64,6 @@ const config: UserConfigFnObject = ({mode, command}: ConfigEnv): UserConfig => {
         }
       }
     }
-  }
+  })
 }
 export default defineConfig(config);

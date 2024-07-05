@@ -65,7 +65,8 @@
   "include": [
     "src",
     "types/**/*.d.ts",
-    "auto-imports.d.ts"
+    "auto-imports.d.ts",
+    "components.d.ts"
     //    "src/types/auto-imports.d.ts",
     //    "src/types/auto-components.d.ts"
   ],
